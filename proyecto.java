@@ -118,19 +118,26 @@ class conversion{
             
             //separacion parte mil
             int number = n-(dez*1000000);
-           System.out.println("Los miles son :"+number);
+            System.out.println("Los miles son :"+number);
             //int number = n-dez;
             //number contiene 100,000
             if(number>0){
                 int xx = Math.round((number/1000));
                 String y = (toRoman(xx,true,false)); 
                 //parte centenas
+                System.out.println("estos miles a :"+xx);
                 System.out.println(mill+y);
-            }
-        
+                //parte decenas
+                int cin = number-xx*1000;
+                String z = (toRoman(cin,false,false));
+                if(xx == 0){
+                    System.out.println(mill+z);
+                }else{
+                    System.out.println(mill+y+z);
+                }       
+            } 
         } 
         else{
-            System.out.println("default");
             System.out.println(toRoman(n, false,false));
         }
     }
