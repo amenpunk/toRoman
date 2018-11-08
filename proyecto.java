@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 class conversion{
     
-    public static String toRoman(int number,boolean mil){
+    public static String toRoman(int number,boolean mil,boolean mill){
         
         StringBuilder br = new StringBuilder("");
         
         while(number!=0)
         {   
-
             while(number>=1000)
             {
                 br.append("M");
@@ -78,8 +77,8 @@ class conversion{
         if(mil == true){
             br.append("'");
         }
-        else{
-            br.append("");
+        else if(mill == true){
+            br.append("''");
         }
         
         return br.toString();
@@ -91,23 +90,48 @@ class conversion{
         int n = reader.nextInt();
         reader.close();
 
-        
-        if(n >3999){
+        //parte mil
+        if(n >3999 && n <1000000){
             int dez = Math.round((n/1000));
 
-            String y = (toRoman(dez,true)); 
+            String y = (toRoman(dez,true,false)); 
             dez = dez*1000;
             int number = n-dez;
+            //System.out.println("los 10miles son"+y);
 
-            String x =(toRoman(number,false));
+
+            String x =(toRoman(number,false,false));
             StringBuilder cadena = new StringBuilder("");
             cadena.append(y);
             cadena.append(x);
             System.out.println(cadena);
+
         }
-        else{
-            System.out.println(toRoman(n, false));
-        }
+        //parte del millon
+        else if (n>=1000000) {
+
+            int dez = Math.round((n/1000000));
+            System.out.println("Miez millones: "+dez);
+            //parte millon
+            String mill = (toRoman(dez, false, true));
+            System.out.println(mill);
+            
+            //separacion parte mil
+            int number = n-(dez*1000000);
+           System.out.println("Los miles son :"+number);
+            //int number = n-dez;
+            //number contiene 100,000
+            if(number>0){
+                int xx = Math.round((number/1000));
+                String y = (toRoman(xx,true,false)); 
+                //parte centenas
+                System.out.println(mill+y);
+            }
         
+        } 
+        else{
+            System.out.println("default");
+            System.out.println(toRoman(n, false,false));
+        }
     }
 }
