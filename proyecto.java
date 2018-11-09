@@ -97,9 +97,6 @@ class conversion{
             String y = (toRoman(dez,true,false)); 
             dez = dez*1000;
             int number = n-dez;
-            //System.out.println("los 10miles son"+y);
-
-
             String x =(toRoman(number,false,false));
             StringBuilder cadena = new StringBuilder("");
             cadena.append(y);
@@ -111,22 +108,20 @@ class conversion{
         else if (n>=1000000) {
 
             int dez = Math.round((n/1000000));
-            System.out.println("Miez millones: "+dez);
             //parte millon
             String mill = (toRoman(dez, false, true));
-            System.out.println(mill);
+            //System.out.println(mill);
             
             //separacion parte mil
             int number = n-(dez*1000000);
-            System.out.println("Los miles son :"+number);
             //int number = n-dez;
             //number contiene 100,000
-            if(number>0){
+            if(number>=0){
                 int xx = Math.round((number/1000));
                 String y = (toRoman(xx,true,false)); 
                 //parte centenas
-                System.out.println("estos miles a :"+xx);
-                System.out.println(mill+y);
+               // System.out.println("estos miles a :"+xx);
+                //System.out.println(mill+y);
                 //parte decenas
                 int cin = number-xx*1000;
                 String z = (toRoman(cin,false,false));
